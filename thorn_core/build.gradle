@@ -1,13 +1,11 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion "27.0.3"
-
-
+    compileSdkVersion parent.ext.compileSdkVersion
+    buildToolsVersion parent.ext.buildToolsVersion
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 27
+        minSdkVersion parent.ext.minSdkVersion
+        targetSdkVersion parent.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
     }
@@ -22,10 +20,11 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    api 'com.android.support:appcompat-v7:27.1.0'
-    api 'com.android.support:support-v4:27.1.0'
-    api 'com.android.support:recyclerview-v7:27.1.0'
-    api 'com.android.support:design:27.1.0'
+    api "com.android.support:appcompat-v7:$supportVersion"
+    api "com.android.support:support-v4:$supportVersion"
+    api "com.android.support:recyclerview-v7:$supportVersion"
+    api "com.android.support:cardview-v7:$supportVersion"
+    api "com.android.support:design:$supportVersion"
     api 'com.android.support:multidex:1.0.3'
     // ViewModel and LiveData
     api "android.arch.lifecycle:extensions:1.1.0"
@@ -40,7 +39,26 @@ dependencies {
     // Paging
 //    implementation "android.arch.paging:runtime:1.0.0-alpha6"
     provided 'com.google.auto.value:auto-value:1.4.1'
+    annotationProcessor 'com.google.auto.value:auto-value:1.4.1'
     //图片加载
     api 'com.github.bumptech.glide:glide:4.6.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
+    implementation 'com.github.bumptech.glide:okhttp3-integration:4.6.1'
+    //butterknife
+    api 'com.jakewharton:butterknife:8.4.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+    //leakcanary
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    //网络请求依赖
+    api 'com.squareup.okio:okio:1.14.0'
+    api 'com.squareup.okhttp3:okhttp:3.10.0'
+    api 'com.squareup.retrofit2:retrofit:2.4.0'
+    api 'com.squareup.retrofit2:converter-scalars:2.4.0'
+    api 'com.google.code.gson:gson:2.8.2'
+    //工具包-https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/README-CN.md
+    //更多工具类参考 https://github.com/Blankj/AndroidUtilCode/blob/master/subutil/README-CN.md
+    api 'com.blankj:utilcode:1.13.6'
+
 }

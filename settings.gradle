@@ -1,1 +1,1 @@
-include ':app', ':thorn_core'
+include ':app', ':thorn_core', ':thorn_ui'

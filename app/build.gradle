@@ -20,5 +20,10 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(':thorn_core')
+    api project(':thorn_core')
+    //Banner-https://github.com/bingoogolapple/BGABanner-Android
+    implementation 'cn.bingoogolapple:bga-banner:2.2.4@aar'
+    //Qmui-https://github.com/QMUI/QMUI_Android
+    compile 'com.qmuiteam:qmui:1.1.0'
+    //
 }
