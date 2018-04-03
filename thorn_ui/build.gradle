@@ -20,5 +20,13 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':thorn_core')
+    api project(':thorn_core')
+    //Banner-https://github.com/bingoogolapple/BGABanner-Android
+//    implementation 'cn.bingoogolapple:bga-banner:2.2.4@aar'
+    //Banner
+    implementation 'com.youth.banner:banner:1.4.10'
+    //Qmui-https://github.com/QMUI/QMUI_Android
+    implementation 'com.qmuiteam:qmui:1.1.0'
+    //RecyclerView-https://github.com/CymChad/BaseRecyclerViewAdapterHelper
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.36'
 }

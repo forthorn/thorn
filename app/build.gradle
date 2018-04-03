@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.2"
+    compileSdkVersion parent.ext.compileSdkVersion
+    buildToolsVersion parent.ext.buildToolsVersion
     defaultConfig {
         applicationId "com.forthorn.thorn"
-        minSdkVersion 19
-        targetSdkVersion 26
+        minSdkVersion parent.ext.minSdkVersion
+        targetSdkVersion parent.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
     }
@@ -19,11 +19,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    api project(':thorn_core')
-    //Banner-https://github.com/bingoogolapple/BGABanner-Android
-    implementation 'cn.bingoogolapple:bga-banner:2.2.4@aar'
-    //Qmui-https://github.com/QMUI/QMUI_Android
-    compile 'com.qmuiteam:qmui:1.1.0'
-    //
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    api project(':thorn_ui')
+
 }
