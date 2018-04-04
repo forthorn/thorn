@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 
+
 android {
     compileSdkVersion parent.ext.compileSdkVersion
     buildToolsVersion parent.ext.buildToolsVersion
@@ -9,17 +10,110 @@ android {
         targetSdkVersion parent.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+
+        //选择要添加的对应cpu类型的.so库。
+        ndk {
+            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a', 'x86', 'x86_64', 'mips', 'mips64'
+        }
+    }
+    signingConfigs {
+        Properties properties = new Properties()
+        File propFile = project.file('thorn.properties')
+        if (propFile.exists()) {
+            properties.load(propFile.newDataInputStream())
+        }
+        release {
+            keyAlias properties.getProperty("RELEASE_KEY_ALIAS")
+            keyPassword properties.getProperty("RELEASE_KEY_PASSWORD")
+            storeFile file('thorn.keystore')
+            storePassword properties.getProperty("RELEASE_STORE_PASSWORD")
+            v2SigningEnabled false
+        }
     }
     buildTypes {
-        release {
+        debug {
+            buildConfigField "boolean", "LOG_DEBUG", "true"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            signingConfig signingConfigs.releas
         }
+        release {
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            minifyEnabled false
+            zipAlignEnabled true
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+
+    // 避免 lint 检测出错时停止构建
+    lintOptions {
+        abortOnError false
+    }
+
+    //设置虚拟机堆内存空间大小，避免在编译期间OOM
+    dexOptions {
+        jumboMode = true
+        javaMaxHeapSize "4g"
+    }
+
+    //3.0版本需求
+    flavorDimensions "thorn"
+
+    //渠道名称，格式如下
+    productFlavors {
+        dev { dimension "thorn" }
+        tencent { dimension "thorn" }
+        xiaomi { dimension "thorn" }
+        wandoujia { dimension "thorn" }
+        huawei { dimension "thorn" }
+        baidu { dimension "thorn" }
+        google { dimension "thorn" }
+    }
+
+    productFlavors.all {
+        flavor -> flavor.manifestPlaceholders = [CHANNEL_VALUE: name]
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+//    修改发行编译版本名称
+    android.applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def time
+            time = new Date().format("MMddHHmm", TimeZone.getTimeZone("GMT+8"))
+            if (variant.buildType.name.equals('release')) {
+                outputFileName = "App_v${defaultConfig.versionName}_${time}_.apk"
+            } else if (variant.buildType.name.equals('debug')) {
+                outputFileName = "App_v${defaultConfig.versionName}_${time}_debug.apk"
+            }
+        }
+    }
+}
+
+configurations.all {
+    resolutionStrategy {
+        force "com.android.support:support-annotations:${supportVersion}"
+        force "com.android.support:appcompat-v7:${supportVersion}"
+        force "com.android.support:support-v4:${supportVersion}"
+        force "com.android.support:recyclerview-v7:${supportVersion}"
+        force "com.android.support:cardview-v7:${supportVersion}"
+        force "com.android.support:design:${supportVersion}"
+        force 'com.android.support:multidex:1.0.3'
+        force 'com.android.support.constraint:constraint-layout:1.0.2'
     }
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    api project(':thorn_ui')
-
+    implementation project(':thorn_ui')
+    //leakcanary
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    testImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
 }
