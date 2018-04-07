@@ -1,13 +1,14 @@
 package com.forthorn.thorn;
 
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
-import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
+import com.forthorn.thorn_ui.ahbottomnavigation.AHBottomNavigation;
+import com.forthorn.thorn_ui.ahbottomnavigation.AHBottomNavigationItem;
 
-public class MainActivity extends AppCompatActivity {
+import me.yokeyword.fragmentation.SupportActivity;
+
+public class MainActivity extends SupportActivity implements AHBottomNavigation.OnTabSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,42 +19,36 @@ public class MainActivity extends AppCompatActivity {
 
         // Create items
         AHBottomNavigationItem item1 = new AHBottomNavigationItem(R.string.item_main,
-                R.drawable.qmui_icon_notify_done, R.color.qmui_config_color_red);
+                R.drawable.app, R.color.color_white);
         AHBottomNavigationItem item2 = new AHBottomNavigationItem(R.string.item_app,
-                R.drawable.qmui_icon_notify_info, R.color.qmui_config_color_red);
-        AHBottomNavigationItem item3 = new AHBottomNavigationItem(R.string.item_find,
-                R.drawable.qmui_icon_notify_error, R.color.qmui_config_color_red);
+                R.drawable.atm, R.color.color_white);
+        AHBottomNavigationItem item3 = new AHBottomNavigationItem(R.string.item_main,
+                R.drawable.courier, R.color.color_white);
+        AHBottomNavigationItem item4 = new AHBottomNavigationItem(R.string.item_app,
+                R.drawable.favorites, R.color.color_white);
+        AHBottomNavigationItem item5 = new AHBottomNavigationItem(R.string.item_main,
+                R.drawable.app, R.color.color_white);
 
         // Add items
         bottomNavigation.addItem(item1);
         bottomNavigation.addItem(item2);
         bottomNavigation.addItem(item3);
+        bottomNavigation.addItem(item4);
+        bottomNavigation.addItem(item5);
 
-        // Set background color
-        bottomNavigation.setDefaultBackgroundColor(Color.parseColor("#FEFEFE"));
-
-        // Disable the translation inside the CoordinatorLayout
         bottomNavigation.setBehaviorTranslationEnabled(false);
-
-        // Change colors
-        bottomNavigation.setAccentColor(Color.TRANSPARENT);
-        bottomNavigation.setInactiveColor(Color.parseColor("#747474"));
-
-        // Use colored navigation with circle reveal effect
+        bottomNavigation.setColoredModeColors(Color.RED, Color.GRAY);
         bottomNavigation.setColored(true);
-
-        // Set current item programmatically
-        bottomNavigation.setCurrentItem(1);
-        bottomNavigation.setTitleTextSizeInSp(13, 12);
+        bottomNavigation.setTitleState(AHBottomNavigation.TitleState.ALWAYS_SHOW);
+        bottomNavigation.setCurrentItem(0);
+        bottomNavigation.setTitleTextSizeInSp(11, 10);
         bottomNavigation.setUseElevation(true, 2);
-        // Set listener
-        bottomNavigation.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
-            @Override
-            public boolean onTabSelected(int position, boolean wasSelected) {
-                // Do something cool here...
-                return wasSelected;
-            }
+        bottomNavigation.setOnTabSelectedListener(this);
+    }
 
-        });
+    @Override
+    public boolean onTabSelected(int position, boolean wasSelected) {
+
+        return true;
     }
 }

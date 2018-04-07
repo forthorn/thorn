@@ -2,6 +2,7 @@ package com.forthorn.thorn.app;
 
 import android.app.Application;
 
+import com.blankj.utilcode.util.Utils;
 import com.squareup.leakcanary.LeakCanary;
 
 /**
@@ -15,5 +16,6 @@ public class ThornApp extends Application {
     public void onCreate() {
         super.onCreate();
         LeakCanary.install(this);
+        Utils.init(this);
     }
 }

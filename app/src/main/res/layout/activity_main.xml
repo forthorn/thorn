@@ -15,13 +15,13 @@
         android:text="1231123123123123"
         app:leftDrawable="@android:drawable/ic_btn_speak_now"
         app:leftDrawableHeight="20dp"
-        app:leftDrawableWidth="20dp"
-        />
+        app:leftDrawableWidth="20dp"/>
 
-    <com.aurelhubert.ahbottomnavigation.AHBottomNavigation
+    <com.forthorn.thorn_ui.ahbottomnavigation.AHBottomNavigation
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_gravity="bottom"
+        tools:background="@color/qmui_config_color_red"
         tools:layout_height="48dp"/>
 </FrameLayout>

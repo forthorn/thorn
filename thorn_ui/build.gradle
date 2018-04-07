@@ -31,6 +31,8 @@ dependencies {
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.36'
     //Divider-https://github.com/yqritc/RecyclerView-FlexibleDivider
     api 'com.yqritc:recyclerview-flexibledivider:1.4.0'
-    //bottomnavigation-https://github.com/aurelhubert/ahbottomnavigation
-    api 'com.aurelhubert:ahbottomnavigation:2.1.0'
+    //bottomnavigation-https://github.com/aurelhubert/ahbottomnavigation，copy源码自行修改间距
+//    api 'com.aurelhubert:ahbottomnavigation:2.1.0'
+//    Fragmentation-https://github.com/YoKeyword/Fragmentation
+    api 'me.yokeyword:fragmentation:1.3.3'
 }

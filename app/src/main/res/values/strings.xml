@@ -6,4 +6,5 @@
     <string name="item_find">娱乐</string>
     <string name="item_fun">游乐场</string>
     <string name="item_profile">我的</string>
+    <string name="item_empty"></string>
 </resources>
