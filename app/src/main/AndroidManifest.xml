@@ -21,6 +21,7 @@
         <meta-data
             android:name="android.max_aspect"
             android:value="2.1"/>
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities=".fileprovider"
@@ -55,6 +56,14 @@
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".TestActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
