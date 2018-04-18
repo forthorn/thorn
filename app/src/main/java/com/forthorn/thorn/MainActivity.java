@@ -14,27 +14,25 @@ public class MainActivity extends SupportActivity implements AHBottomNavigation.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initBottomBar();
+    }
 
+    private void initBottomBar() {
         AHBottomNavigation bottomNavigation = (AHBottomNavigation) findViewById(R.id.bottom_navigation);
-
         // Create items
         AHBottomNavigationItem item1 = new AHBottomNavigationItem(R.string.item_main,
                 R.drawable.app, R.color.color_white);
-        AHBottomNavigationItem item2 = new AHBottomNavigationItem(R.string.item_app,
+        AHBottomNavigationItem item2 = new AHBottomNavigationItem(R.string.item_rank,
                 R.drawable.atm, R.color.color_white);
-        AHBottomNavigationItem item3 = new AHBottomNavigationItem(R.string.item_main,
+        AHBottomNavigationItem item3 = new AHBottomNavigationItem(R.string.item_discover,
                 R.drawable.courier, R.color.color_white);
-        AHBottomNavigationItem item4 = new AHBottomNavigationItem(R.string.item_app,
+        AHBottomNavigationItem item4 = new AHBottomNavigationItem(R.string.item_mine,
                 R.drawable.favorites, R.color.color_white);
-        AHBottomNavigationItem item5 = new AHBottomNavigationItem(R.string.item_main,
-                R.drawable.app, R.color.color_white);
-
         // Add items
         bottomNavigation.addItem(item1);
         bottomNavigation.addItem(item2);
         bottomNavigation.addItem(item3);
         bottomNavigation.addItem(item4);
-        bottomNavigation.addItem(item5);
 
         bottomNavigation.setBehaviorTranslationEnabled(false);
         bottomNavigation.setColoredModeColors(Color.RED, Color.GRAY);
@@ -51,4 +49,5 @@ public class MainActivity extends SupportActivity implements AHBottomNavigation.
 
         return true;
     }
+
 }

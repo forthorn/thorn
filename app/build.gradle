@@ -105,7 +105,7 @@ configurations.all {
         force "com.android.support:cardview-v7:${supportVersion}"
         force "com.android.support:design:${supportVersion}"
         force 'com.android.support:multidex:1.0.3'
-        force 'com.android.support.constraint:constraint-layout:1.0.2'
+        force 'com.android.support.constraint:constraint-layout:1.1.0'
     }
 }
 
@@ -114,7 +114,6 @@ dependencies {
     implementation project(':thorn_ui')
     implementation project(':thorn_core')
     //leakcanary
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     testImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'

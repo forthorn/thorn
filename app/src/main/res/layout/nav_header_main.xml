@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="185dp"
+    android:background="@color/colorPrimary">
+
+    <ImageView
+        android:id="@+id/iv"
+        android:layout_width="match_parent"
+        android:layout_height="185dp"
+        android:background="@color/qmui_config_color_red"/>
+
+    <ImageView
+        android:id="@+id/iv_avatar"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/ic_ic"
+        app:layout_constraintLeft_toLeftOf="@id/constraintLayout"
+        app:layout_constraintTop_toTopOf="@id/constraintLayout"/>
+
+    <TextView
+        android:id="@+id/tv_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="点击头像登录"
+        android:textColor="@color/color_white"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="@id/iv_avatar"
+        app:layout_constraintTop_toBottomOf="@id/iv_avatar"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="16dp"
+        app:layout_constraintRight_toRightOf="@id/constraintLayout"
+        app:layout_constraintTop_toTopOf="@id/iv_avatar"/>
+
+</android.support.constraint.ConstraintLayout>
